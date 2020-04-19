@@ -2,6 +2,8 @@ package servicios;
 
 import entidades.*;
 import dao.*;
+import servicios.*;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 //import java.sql.Date;
@@ -28,7 +30,7 @@ public class proceSolSRV {
 		lstFeriados = miDAO.getLstFeriados(dFechaActual);
 
 		Collection<interfaceDTO>lstInterface = null;
-		lstInterface = miDAO.getLstContactos();
+		//lstInterface = miDAO.getLstContactos();
 		lstInterface = miDAO.getLstSolicitudes();
 		
 		for(interfaceDTO fila: lstInterface) {
@@ -36,6 +38,13 @@ public class proceSolSRV {
 			sTipo=fila.tipo_sol.trim();
 			switch(sTipo) {
 				case "CONTACTO":
+					if(!ProcesaContacto(dFechaActual, fila)) {
+						System.out.println("Error al procesar Contacto");
+						return false;
+					}
+					break;
+
+				case "CALCOM":
 					if(!ProcesaContacto(dFechaActual, fila)) {
 						System.out.println("Error al procesar Contacto");
 						return false;

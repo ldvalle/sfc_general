@@ -8,7 +8,7 @@ public class Calcom {
 		
 		procCalcomesSRV miCalcom = new procCalcomesSRV();
 		
-		miCalcom.CalComes();
+		//miCalcom.CalComes();
 
 	}
 

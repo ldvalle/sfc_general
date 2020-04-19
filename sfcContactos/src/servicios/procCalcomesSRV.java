@@ -17,7 +17,7 @@ public class procCalcomesSRV {
 	private Date dFechaHoy = new Date();
 	private ceParametrosDTO regPar = null;
 	
-	public void CalComes() {
+	public void CalComes(Date dFechaActual, interfaceDTO regInter) {
 		SimpleDateFormat fmtDate= new SimpleDateFormat("yyyy-MM-dd");
 		String sFechaHoy=fmtDate.format(dFechaHoy);
 		
@@ -40,7 +40,7 @@ public class procCalcomesSRV {
 			e.printStackTrace();
 			System.exit(1);
 		}
-
+/*
 		// Cargar Pedidos
 		Collection<interfaceDTO>lstInterface = null;
 		try {
@@ -55,8 +55,13 @@ public class procCalcomesSRV {
 				System.out.println("Fallo carga de caso " + fila.caso);
 			}
 		}
-		
+*/		
 
+		if(!ProcesaCalCom(regInter)) {
+			System.out.println("Fallo carga de caso " + regInter.caso);
+		}
+		
+		
 		
 	}
 	
@@ -158,7 +163,7 @@ public class procCalcomesSRV {
 				if(!miDao.regiCalcom(lNroReclamo, lNroMensaje, sNroOrden, regData, regPar, regParLocal, regCliente, delivery, reclamo, clienteReclamo, recla, recUni, mensaCalcom )) {
 					System.out.println(String.format("No se pudo registrar el calcom %d para tema %d.", regInter.caso, regData.tema));
 				}else {
-					System.out.println(String.format("Se generó Mensaje: %d para reclamo: %d y Orden Segen: %s", lNroMensaje, lNroReclamo, sNroOrden));
+					System.out.println(String.format("Se generï¿½ Mensaje: %d para reclamo: %d y Orden Segen: %s", lNroMensaje, lNroReclamo, sNroOrden));
 				}
 				
 				
@@ -179,7 +184,7 @@ public class procCalcomesSRV {
 		
 		//Validar la tarifa
 		if(! reg.tarifa.equals("T1") && !reg.tarifa.equals("T2")) {
-			System.out.println("Valor de Tarifa Inválida.");
+			System.out.println("Valor de Tarifa Invï¿½lida.");
 			return false;
 		}
 		try {
